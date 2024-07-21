@@ -1,33 +1,30 @@
-# Multilingual-File-Manager-Application
+# Project Documentation
 
-### Project Overview
+## Project Overview
 
-This project will allow you to showcase your backend development skills learned throughout the course. It integrates essential concepts like databases, i18n, queuing systems, and unit testing in a practical application.
+This project demonstrates backend development skills by building a multi-user file manager application using Node.js, MongoDB, Redis, and other essential technologies. The project integrates concepts like databases, internationalization (i18n), queuing systems, and unit testing.
 
-#### Project Description:
+## Project Setup
 
-**Develop a multi-user file manager application using Node.js, Redis, and MySQL. The application should:**
+### Prerequisites
 
-- User Management: Allow user registration and login with secure password storage.
-- File Management: CRUD operations on files (create, read, update, delete) within a user's designated directory structure.
-- Multilingual Support (i18n): Display user interface elements (labels, messages) in different languages based on user preferences.
-- Queuing System: Implement a queue using Redis to handle asynchronous tasks like file uploads or conversions (optional: add progress tracking).
-- Unit Testing: Write unit tests for core functionalities, covering user registration, file management operations, and possibly the queuing system.
-  
-**Technical Considerations:**
+Before you begin, ensure you have the following installed on your system:
 
-#### Databases:
+- **Node.js**: [Install Node.js](https://nodejs.org/)
+- **MongoDB**: [Install MongoDB](https://www.mongodb.com/try/download/community)
+- **Redis**: [Install Redis](https://redis.io/download)
 
-- MySQL: Store user data, file metadata (name, size, type etc.) and directory structure.
-- Redis: Implement a queue for asynchronous tasks. Consider libraries like Bull or Agenda.js
-- Node.js Framework: Encourage using a lightweight framework like Express.js to structure the application.
-- Authentication: Use a secure hashing algorithm (e.g., bcrypt) for password storage. Consider libraries like Passport.js for user authentication.
-- i18n Libraries: Explore libraries like i18next for managing and implementing multilingual functionalities.
-- Testing Framework: Use a popular testing framework like Jest or Mocha for unit testing
-  
-#### Project Deliverables:
+### Installation
 
-- Functional Backend Application: A working Node.js application demonstrating the outlined functionalities.
-- Source Code: Well-organized and commented codebase.
-- Unit Tests: A suite of unit tests covering core functionalities.
-- Project Documentation: A brief document outlining the project setup, technical choices, and usage instructions.
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/JacquelineTuyisenge/Multilingual-File-Manager-Application.git
+   cd Multilingual-File-Manager-Application
+   
+2. **Install Dependencies , start servers and run the application**:
+    ```sh
+    npm install
+### Group Members:
+1. <a href='https://github.com/M-Aloysie'>Aloysie Murekatete</a>
+2. <a href='https://github.com/JacquelineTuyisenge'>Jacqueline Tuyisenge</a>
+   
