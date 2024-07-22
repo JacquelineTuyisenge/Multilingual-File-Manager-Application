@@ -3,22 +3,21 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const mongoConnect = async () => {
-    try {
-        await mongoose.connect(process.env.DATABASE_URL);
-        console.info('Database Connected');
-    } catch (error) {
-        console.error('Database connection error:', error);
-    }
-};
+mongoose.connection.on("open", () => {
+    console.info(JSON.stringify({ message: "Database Connected" }))
+}) 
+mongoose.connection.on("close", () => {
+    console.info(JSON.stringify({ message: "Something went wrong" }))
+}) 
 
+const mongoConnect = async () => { 
+    const url = process.env.DATABASE_URL;
+    await mongoose
+    .connect(url)
+    .catch(err => console.log(err));
+}
 const mongoDisconnect = async () => {
-    try {
-        await mongoose.disconnect();
-        console.info('Database Disconnected');
-    } catch (error) {
-        console.error('Database disconnection error:', error);
-    }
-};
+    await mongoose.disconnect();
+}
 
-export { mongoConnect, mongoDisconnect };
+export { mongoConnect, mongoDisconnect }; 
