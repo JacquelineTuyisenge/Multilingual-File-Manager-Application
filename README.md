@@ -49,9 +49,13 @@ Before you start, make sure you have the following installed on your development
      npm start
      ```
 
-### Project Structure
+### Project Sections
 
-The project is organized into several key directories and files to ensure maintainability and scalability:
+- User Management
+- File Management
+- Multilingual Support
+- Queuing System
+- Unit Testing
 
 ## Technical Choices
 
@@ -76,11 +80,9 @@ The project team consists of the following members:
 
 1. **[Aloysie Murekatete](https://github.com/M-Aloysie)**
    - **Role**: Backend Developer
-   - **Responsibilities**: 
 
 2. **[Jacqueline Tuyisenge](https://github.com/JacquelineTuyisenge)**
    - **Role**: Backend Developer
-   - **Responsibilities**: 
 
 Each team member played a crucial role in different aspects of the project, ensuring a collaborative approach to building and maintaining the application.
 
