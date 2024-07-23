@@ -1,6 +1,8 @@
-# Project Documentation
+# Multilingual File Manager Application
+ 
+## Project Documentation
 
-## Project Overview
+### Project Overview
 
 This project is designed to showcase backend development skills by building a multi-user file manager application. The application leverages **Node.js**, **MongoDB**, and **JWT** for secure user authentication and session management. It integrates core concepts such as databases, internationalization (i18n), and unit testing to deliver a comprehensive solution for file management.
 
@@ -64,7 +66,7 @@ The project is organized into several key directories and files to ensure mainta
 
 ## Running Unit Tests
 
-- To ensure the core functionalities are working correctly, run unit tests using:
+- To ensure if the core functionalities are working correctly, run unit tests using:
   ```sh
   npm test
   
