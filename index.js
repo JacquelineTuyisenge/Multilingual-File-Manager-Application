@@ -1,10 +1,10 @@
-import dotenv from "dotenv";
-import app from "./app.js";
-import { mongoConnect} from "./mongo.js";
+import dotenv from 'dotenv';
+import app from './app.js';
+import { mongoConnect } from './mongo.js';
 
 dotenv.config();
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 const startServer = async () => {
     try {
@@ -15,7 +15,7 @@ const startServer = async () => {
             console.log(JSON.stringify(message));
         });
     } catch (error) {
-        console.log('error starting server', error);
+        console.log('Error starting server', error);
     }
 };
 
