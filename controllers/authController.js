@@ -12,7 +12,7 @@ const comparePassword = async (enteredPassword, hashedPassword) => {
 };
 
 export const registerUser = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { username, email, password, confirmPassword } = req.body;
 
     try {
         const userExists = await User.findOne({ email });
@@ -21,7 +21,9 @@ export const registerUser = async (req, res) => {
         }
 
         const hashedPassword = await hashPassword(password);
-        const user = await User.create({ username, email, password: hashedPassword });
+        const hashedConfirmPassword = await hashPassword(confirmPassword);
+        const user = await User.create({ username, email, password: hashedPassword, confirmPassword: hashedConfirmPassword });
+        
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 
@@ -30,8 +32,6 @@ export const registerUser = async (req, res) => {
             message: "user created successfully!", 
             data: token
         });
-
-        
             
     } catch (error) {
         console.error('Error registering user:', error);
