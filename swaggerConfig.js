@@ -7,15 +7,25 @@ const swaggerOptions = {
       title: ' MultiLingual File Manager Application',
       version: '1.0.0',
       description: 'API Documentation for MultiLingual File Manager Application',
-      contact: {
-        name: 'Your Name',
-        email: 'your-email@example.com'
-      }
     },
     servers: [
       {
-        url: 'http://localhost:3000',
+        url: 'http://localhost:3000/api/',
         description: 'Local server'
+      }
+    ],
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT'
+        }
+      }
+    },
+    security: [
+      {
+        BearerAuth: []
       }
     ],
   },

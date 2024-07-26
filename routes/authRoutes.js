@@ -26,7 +26,11 @@ const authRoutes = express.Router();
  *             properties:
  *               username:
  *                 type: string
+ *               email:
+ *                 type: string
  *               password:
+ *                 type: string
+ *               confirmPassword:
  *                 type: string
  *     responses:
  *       201:
@@ -49,10 +53,13 @@ authRoutes.post('/register', isUserValid, registerUser);
  *           schema:
  *             type: object
  *             properties:
- *               username:
+ *               email:
  *                 type: string
  *               password:
  *                 type: string
+ *     security:
+ *       - bearerAuth: []
+ * 
  *     responses:
  *       200:
  *         description: User logged in successfully

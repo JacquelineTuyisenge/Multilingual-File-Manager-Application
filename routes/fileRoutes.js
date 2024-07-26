@@ -18,6 +18,8 @@ const fileRouter = express.Router();
  *   get:
  *     summary: Get all files
  *     tags: [Files]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Successfully retrieved files
@@ -37,6 +39,8 @@ fileRouter.get("/", isLoggedIn, getFiles);
  *           type: string
  *         required: true
  *         description: The file ID
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Successfully retrieved file
@@ -61,8 +65,8 @@ fileRouter.get("/:id", isLoggedIn, getSingleFile);
  *               file:
  *                 type: string
  *                 format: binary
- *               filename:
- *                 type: string
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       201:
  *         description: File uploaded and created successfully
@@ -94,8 +98,8 @@ fileRouter.post("/", isLoggedIn, uploadFile, validUpload, createFile);
  *               file:
  *                 type: string
  *                 format: binary
- *               filename:
- *                 type: string
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: File updated successfully
@@ -119,6 +123,8 @@ fileRouter.patch("/:id", isLoggedIn, uploadFile, validUpdate, updateFile);
  *           type: string
  *         required: true
  *         description: The file ID
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: File deleted successfully

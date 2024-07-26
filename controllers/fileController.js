@@ -52,11 +52,11 @@ const getFiles = async (req, res) => {
                 message: "USER NOT FOUND" 
             });
         }
-        const { userId } = req.user._id;
+        const userId = req.user._id;
         
-        const files = await File.find(userId);
+        const files = await File.find({userId});
 
-        res.status(201).json({ 
+        res.status(200).json({ 
             status: "SUCCESS",
             message: "Files fetched successfully!", 
             data: files
