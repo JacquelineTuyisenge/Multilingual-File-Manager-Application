@@ -1,6 +1,6 @@
-import express from 'express';
-import { registerUser, loginUser } from '../controllers/authController.js';
-import isUserValid from '../middleware/userMiddleware.js';
+const express = require('express');
+const { registerUser, loginUser } = require('../controllers/authController.js');
+const isUserValid = require('../middleware/userMiddleware.js');
 
 const authRoutes = express.Router();
 
@@ -59,7 +59,6 @@ authRoutes.post('/register', isUserValid, registerUser);
  *                 type: string
  *     security:
  *       - bearerAuth: []
- * 
  *     responses:
  *       200:
  *         description: User logged in successfully
@@ -68,4 +67,4 @@ authRoutes.post('/register', isUserValid, registerUser);
  */
 authRoutes.post('/login', loginUser);
 
-export default authRoutes;
+module.exports = authRoutes;

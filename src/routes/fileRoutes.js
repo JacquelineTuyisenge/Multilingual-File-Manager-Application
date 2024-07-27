@@ -1,7 +1,7 @@
-import express from "express";
-import { uploadFile, createFile, getFiles, getSingleFile, updateFile, deleteFile } from "../controllers/fileController.js";
-import isLoggedIn from "../middleware/authMiddleware.js";
-import { validUpload, validId, validUpdate } from "../middleware/fileMiddleware.js";
+const express = require('express');
+const { uploadFile, createFile, getFiles, getSingleFile, updateFile, deleteFile } = require('../controllers/fileController.js');
+const isLoggedIn = require('../middleware/authMiddleware.js');
+const { validUpload, validId, validUpdate } = require('../middleware/fileMiddleware.js');
 
 const fileRouter = express.Router();
 
@@ -133,4 +133,4 @@ fileRouter.patch("/:id", isLoggedIn, uploadFile, validUpdate, updateFile);
  */
 fileRouter.delete("/:id", isLoggedIn, validId, deleteFile);
 
-export default fileRouter;
+module.exports = fileRouter;

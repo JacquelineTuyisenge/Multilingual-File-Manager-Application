@@ -1,5 +1,5 @@
-import express from "express";
-import welcome from "../controllers/welcome.js";
+const express = require('express');
+const welcome = require('../controllers/welcome.js');
 
 const welcomeRouter = express.Router();
 
@@ -22,4 +22,4 @@ const welcomeRouter = express.Router();
  */
 welcomeRouter.get("/", welcome);
 
-export default welcomeRouter;
+module.exports = welcomeRouter;

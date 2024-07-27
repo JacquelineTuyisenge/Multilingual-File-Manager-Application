@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "This project is designed to showcase backend development skills by building a multi-user file manager application. The application leverages **Node.js**, **MongoDB**, and **JWT** for secure user authentication and session management. It integrates core concepts such as databases, internationalization (i18n), and unit testing to deliver a comprehensive solution for file management.",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "dev": "nodemon index.js"
   },
   "keywords": [],
@@ -17,7 +16,6 @@
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "i18n": "^0.15.1",
-    "jest": "^29.7.0",
     "joi": "^17.13.3",
     "joi-objectid": "^4.0.2",
     "jsonwebtoken": "^9.0.2",
@@ -25,10 +23,30 @@
     "mongoose": "^8.5.1",
     "multer": "^1.4.5-lts.1",
     "redis": "^4.6.15",
+    "supertest": "^7.0.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },
+  "jest": {
+		"testEnvironment": "node",
+		"coverageReporters": [
+			"json-summary",
+			"text",
+			"lcov"
+		],
+		"coveragePathIgnorePatterns": [
+			"./index.js",
+			"src/validations",
+			"src/documention/index.ts",
+			"/src/utils",
+			"src/middleware",
+			"./swaggerConfig.js",
+      "./generateKey.mjs"
+
+		]
+	},
   "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.1.4"
   }
 }

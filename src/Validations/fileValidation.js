@@ -1,6 +1,4 @@
-import Joi from 'joi';
-
-const objectIdRegex = /^[a-fA-F0-9]{24}$/;
+const Joi = require('joi');
 
 const fileUploadSchema = Joi.object({
     fileName: Joi.string().required().messages({
@@ -54,4 +52,4 @@ const validateFileUpdate = (data) => {
     return fileUpdateSchema.validate(data);
 };
 
-export { validateFileUpload, validateFileId, validateFileUpdate };
+module.exports = { validateFileUpload, validateFileId, validateFileUpdate };

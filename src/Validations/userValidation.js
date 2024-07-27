@@ -1,4 +1,4 @@
-import Joi from "joi";
+const Joi = require('joi');
 
 const usersSchema = Joi.object({
     username: Joi.string()
@@ -16,9 +16,9 @@ const usersSchema = Joi.object({
         "string.empty": "Email field can't be empty!",
         "string.email": "Invalid email"
     }),
-    password: Joi.string().required().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,10}$/).messages({
+    password: Joi.string().required().regex(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/).messages({
         "string.empty": "Password field can't be empty!",
-        "string.pattern.base": "Password must be between 6 and 10 characters long and contain at least one uppercase letter, one lowercase letter, and one digit"
+        "string.pattern.base": "Password must be at least 5 characters long and contain a mixture of letters and numbers"
     }),
     confirmPassword: Joi.string().required().equal(Joi.ref('password')).messages({
         "any.only": "Password don't match!"
@@ -30,4 +30,4 @@ const validateUser = (data) => {
     return usersSchema.validate(data);
 }
 
-export default validateUser;
+module.exports = validateUser;

@@ -1,6 +1,6 @@
-import User from "../models/user.js";
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+const User = require("../models/user.js");
+const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -15,10 +15,9 @@ const isLoggedIn = async (req, res, next) => {
     const token = req.headers.authorization?.split(" ")[1];
 
     try {
-        
         const decoded = jwt.verify(token, process.env.JWT_SECRET || "fdrtjnbftuijhgfr4567");
 
-        if(!decoded){
+        if (!decoded) {
             return res.status(401).json({ status: 'UNAUTHORIZED', message: "login to continue" });
         }
 
@@ -31,7 +30,7 @@ const isLoggedIn = async (req, res, next) => {
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Internal server error" });
-    };
+    }
 };
 
-export default isLoggedIn;
+module.exports = isLoggedIn;

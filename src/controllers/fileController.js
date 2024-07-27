@@ -1,11 +1,11 @@
-import multer from 'multer';
-import File from '../models/file.js';
+const multer = require('multer');
+const File = require('../models/file.js');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'uploads/');
     },
-    fileName: (req, file, cb) => {
+    filename: (req, file, cb) => {
         cb(null, `${Date.now()}-${file.originalname}`);
     }
 });
@@ -20,7 +20,7 @@ const upload = multer({
         }
         cb(null, true);
     }
- });
+});
 
 const uploadFile = upload.single('file');
 
@@ -30,7 +30,7 @@ const createFile = async (req, res) => {
             return res.status(400).json({ message: 'No file uploaded' });
         }
 
-        const { originalname, path, size} = req.file;
+        const { originalname, path, size } = req.file;
         const userId = req.user._id;
 
         const newFile = new File({ fileName: originalname, path, size, userId });
@@ -45,7 +45,6 @@ const createFile = async (req, res) => {
 
 const getFiles = async (req, res) => {
     try {
-
         if (!req.user || !req.user._id) {
             return res.status(404).json({ 
                 status: "NOT FOUND",
@@ -54,7 +53,7 @@ const getFiles = async (req, res) => {
         }
         const userId = req.user._id;
         
-        const files = await File.find({userId});
+        const files = await File.find({ userId });
 
         res.status(200).json({ 
             status: "SUCCESS",
@@ -65,20 +64,20 @@ const getFiles = async (req, res) => {
     } catch (error) {
         return res.status(500).json({ 
             status: "SERVER ERROR",
-            message: "Something went wrong!" });
+            message: "Something went wrong!" 
+        });
     }
 };
 
 const getSingleFile = async (req, res) => {
     try {
+        const { id } = req.params;
 
-    const { id } = req.params;
-
-        if(!id) {
+        if (!id) {
             return res.status(404).json({ message: 'File not found' });
         }
         const file = await File.findById(id);
-        res.status(200).json({status: "SUCCESS", message: "File fetched successfully!", data: file});
+        res.status(200).json({ status: "SUCCESS", message: "File fetched successfully!", data: file });
     } catch (error) {
         res.status(500).json({ message: 'Error fetching file', error });
     }
@@ -120,14 +119,13 @@ const updateFile = async (req, res) => {
     }
 };
 
-
 const deleteFile = async (req, res) => {
     const { id } = req.params;
     try {
         const deletedFile = await File.findByIdAndDelete(id);
-        if(!deletedFile) {
+        if (!deletedFile) {
             return res.status(404).json({ message: 'File not found' });
-        };
+        }
 
         res.status(200).json({ message: 'File deleted successfully' });
     } catch (error) {
@@ -135,4 +133,4 @@ const deleteFile = async (req, res) => {
     }
 };
 
-export { uploadFile, createFile, getFiles, getSingleFile, updateFile, deleteFile };
+module.exports = { uploadFile, createFile, getFiles, getSingleFile, updateFile, deleteFile };

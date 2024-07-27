@@ -1,6 +1,9 @@
-import User from '../models/user.js';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+const User = require('../models/user.js');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
+const dotenv = require('dotenv');
+dotenv.config();
 
 const hashPassword = async (password) => {
     const salt = await bcrypt.genSalt(10);
@@ -11,7 +14,7 @@ const comparePassword = async (enteredPassword, hashedPassword) => {
     return await bcrypt.compare(enteredPassword, hashedPassword);
 };
 
-export const registerUser = async (req, res) => {
+exports.registerUser = async (req, res) => {
     const { username, email, password, confirmPassword } = req.body;
 
     try {
@@ -23,13 +26,12 @@ export const registerUser = async (req, res) => {
         const hashedPassword = await hashPassword(password);
         const hashedConfirmPassword = await hashPassword(confirmPassword);
         const user = await User.create({ username, email, password: hashedPassword, confirmPassword: hashedConfirmPassword });
-        
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '30d' });
 
         res.status(201).json({ 
             status: "SUCCESS",
-            message: "user created successfully!", 
+            message: "User created successfully!", 
             data: token
         });
             
@@ -39,7 +41,7 @@ export const registerUser = async (req, res) => {
     }
 };
 
-export const loginUser = async (req, res) => {
+exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
 
     try {
