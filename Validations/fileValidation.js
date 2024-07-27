@@ -4,41 +4,42 @@ const objectIdRegex = /^[a-fA-F0-9]{24}$/;
 
 const fileUploadSchema = Joi.object({
     fileName: Joi.string().required().messages({
-        'string.empty': 'File name is required',
-        'any.required': 'File name is required',
+        'string.empty': 'file_name_required',
+        'any.required': 'file_name_required',
     }),
     path: Joi.string().required().messages({
-        'string.empty': 'File path is required',
-        'any.required': 'File path is required',
+        'string.empty': 'file_path_required',
+        'any.required': 'file_path_required',
     }),
     size: Joi.number().required().max(20 * 1024 * 1024).messages({
-        'number.base': 'File size must be a number',
-        'any.required': 'File size is required',
-        'number.max': 'File size must be less than or equal to 20MB',
+        'number.base': 'file_size_number',
+        'any.required': 'file_size_required',
+        'number.max': 'file_size_max',
     }),
-    userId: Joi.object().required().messages({
-        'any.required': 'File ID is required',
-        'object.base': 'File ID must be an object ID',
+    userId: Joi.string().regex(objectIdRegex).required().messages({
+        'any.required': 'user_id_required',
+        'string.pattern.base': 'user_id_invalid',
     }),
 });
 
 const fileIdSchema = Joi.object({
-    id: Joi.string().required().messages({
-        'string.empty': 'File ID is required',
-        'any.required': 'File ID is required',
+    id: Joi.string().regex(objectIdRegex).required().messages({
+        'string.empty': 'file_id_required',
+        'any.required': 'file_id_required',
+        'string.pattern.base': 'file_id_invalid',
     }),
 });
 
 const fileUpdateSchema = Joi.object({
     fileName: Joi.string().optional().messages({
-        'string.empty': 'File name cannot be empty',
+        'string.empty': 'file_name_invalid',
     }),
     path: Joi.string().optional().messages({
-        'string.empty': 'File path cannot be empty',
+        'string.empty': 'file_path_invalid',
     }),
     size: Joi.number().optional().max(20 * 1024 * 1024).messages({
-        'number.base': 'File size must be a number',
-        'number.max': 'File size must be less than or equal to 20MB',
+        'number.base': 'file_size_number',
+        'number.max': 'file_size_max',
     })
 });
 

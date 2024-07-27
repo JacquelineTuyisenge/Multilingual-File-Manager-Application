@@ -7,21 +7,21 @@ const usersSchema = Joi.object({
         .required()
         .regex(/^[A-Za-z]+$/)
         .messages({
-            "string.empty": "Name field can't be empty!",
-            "string.min": "Name must be at least 1 character long.",
-            "string.max": "Name cannot exceed 8 characters.",
-            "string.pattern.base": "Invalid name format. Please provide a name with only alphabetic characters."
+            "string.empty": "username_required",
+            "string.min": "username_min",
+            "string.max": "username_max",
+            "string.pattern.base": "username_invalid"
         }),
     email: Joi.string().required().email().messages({
-        "string.empty": "Email field can't be empty!",
-        "string.email": "Invalid email"
+        "string.empty": "email_required",
+        "string.email": "email_invalid"
     }),
     password: Joi.string().required().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,10}$/).messages({
-        "string.empty": "Password field can't be empty!",
-        "string.pattern.base": "Password must be between 6 and 10 characters long and contain at least one uppercase letter, one lowercase letter, and one digit"
+        "string.empty": "password_required",
+        "string.pattern.base": "password_invalid"
     }),
     confirmPassword: Joi.string().required().equal(Joi.ref('password')).messages({
-        "any.only": "Password don't match!"
+        "any.only": "password_mismatch"
     }),
     role: Joi.string()
 });
