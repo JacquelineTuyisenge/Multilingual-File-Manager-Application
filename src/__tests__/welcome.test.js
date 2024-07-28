@@ -1,6 +1,9 @@
 const request = require('supertest');
 const app = require('../app.js');
 const validateUser = require('../Validations/userValidation');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 describe('File Manager API', () => {
 

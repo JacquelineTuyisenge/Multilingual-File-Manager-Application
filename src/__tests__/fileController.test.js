@@ -2,6 +2,9 @@ const request = require('supertest');
 const apps = require('../testSetup.js');
 const File = require('../models/file.js');
 const { mongoConnect, mongoDisconnect } = require('../mongo.js');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 describe('File Management API Tests', () => {
 
