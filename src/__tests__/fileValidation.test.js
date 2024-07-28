@@ -1,19 +1,11 @@
 const { validateFileUpload, validateFileId, validateFileUpdate } = require('../Validations/fileValidation.js');
 const Joi = require('joi');
+const dotenv = require('dotenv');
+dotenv.config();
 
 describe('File Validation', () => {
 
     describe('validateFileUpload', () => {
-        // it('should validate a correct file upload object', () => {
-        //     const validData = {
-        //         fileName: 'example.txt',
-        //         path: '/files/example.txt',
-        //         size: 1024 * 1024, // 1MB
-        //         userId: '60d4f1f77c08b9f5f8b8d8b1'
-        //     };
-        //     const { error } = validateFileUpload(validData);
-        //     expect(error).toBeUndefined();
-        // });
 
         it('should return an error if fileName is missing', () => {
             const invalidData = {
@@ -26,7 +18,6 @@ describe('File Validation', () => {
             expect(error.details[0].message).toBe('File name is required');
         });
 
-        // Add more tests for other fields and invalid cases...
     });
 
     describe('validateFileId', () => {
@@ -43,7 +34,6 @@ describe('File Validation', () => {
             expect(error.details[0].message).toBe('File ID is required');
         });
 
-        // Add more tests for invalid cases...
     });
 
     describe('validateFileUpdate', () => {
@@ -51,7 +41,7 @@ describe('File Validation', () => {
             const validData = {
                 fileName: 'new-name.txt',
                 path: '/files/new-name.txt',
-                size: 2048 * 1024 // 2MB
+                size: 2048 * 1024 
             };
             const { error } = validateFileUpdate(validData);
             expect(error).toBeUndefined();
@@ -59,7 +49,7 @@ describe('File Validation', () => {
 
         it('should return an error if size exceeds the limit', () => {
             const invalidData = {
-                size: 30 * 1024 * 1024 // 30MB
+                size: 30 * 1024 * 1024
             };
             const { error } = validateFileUpdate(invalidData);
             expect(error).toBeDefined();

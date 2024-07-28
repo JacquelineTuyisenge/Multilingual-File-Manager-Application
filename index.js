@@ -1,6 +1,5 @@
 const dotenv = require('dotenv');
 const app = require('./src/app.js');
-// const { testMongoConnect } = require('./src/mongo.js');
 const {mongoConnect} = require('./src/mongo.js');
 
 dotenv.config();

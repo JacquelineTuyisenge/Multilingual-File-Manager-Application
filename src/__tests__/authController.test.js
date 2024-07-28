@@ -1,7 +1,7 @@
 const request = require('supertest');
 const app = require('../app.js');
 const User = require('../models/user.js');
-const { testMongoConnect, teatMongoDisconnect } = require('../mongo.js');
+const { mongoConnect, mongoDisconnect } = require('../mongo.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
@@ -38,7 +38,7 @@ const mockLoginUser = {
 
 describe('Auth API Tests', () => {
     beforeAll(async () => {
-        await testMongoConnect();
+        await mongoConnect();
     });
 
     afterEach(async () => {
@@ -47,8 +47,7 @@ describe('Auth API Tests', () => {
 
 
     afterAll(async () => {
-        await User.deleteMany({});
-        await teatMongoDisconnect();
+        await mongoDisconnect();
     });
 
     it("should register a user and return 201", async () => {

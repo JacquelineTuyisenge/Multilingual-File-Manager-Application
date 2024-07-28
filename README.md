@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/JacquelineTuyisenge/Multilingual-File-Manager-Application/badge.svg?branch=main)](https://coveralls.io/github/JacquelineTuyisenge/Multilingual-File-Manager-Application?branch=main)
+
 # Multilingual File Manager Application
  
 ## Project Documentation

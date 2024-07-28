@@ -4,21 +4,20 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 mongoose.connection.on("open", () => {
-    console.info(JSON.stringify({ message: "Database Connected" }));
+    const envMessage = process.env.NODE_ENV === 'test'
+    ? "Test DB Connected"
+    : "Development DB Connected";
+    console.info(JSON.stringify({ message: envMessage }));
 }); 
 mongoose.connection.on("close", () => {
-    console.info(JSON.stringify({ message: "Something went wrong" }));
+    const envMessage = process.env.NODE_ENV === 'test'
+        ? "Test Database Disconnected"
+        : "Development Database Disconnected";
+    console.info(JSON.stringify({ message: envMessage }));
 }); 
 
 const mongoConnect = async () => { 
-    const url = process.env.DATABASE_URL;
-    await mongoose
-        .connect(url)
-        .catch(err => console.log(err));
-};
-
-const testMongoConnect = async () => {
-    const url = process.env.TEST_DATABASE_URL;
+    const url = process.env.NODE_ENV === 'test' ? process.env.TEST_DATABASE_URL : process.env.DATABASE_URL;
     await mongoose
         .connect(url)
         .catch(err => console.log(err));
@@ -28,8 +27,4 @@ const mongoDisconnect = async () => {
     await mongoose.disconnect();
 };
 
-const teatMongoDisconnect = async () => {
-    await mongoose.disconnect();
-};
-
-module.exports = { mongoConnect, mongoDisconnect, testMongoConnect, teatMongoDisconnect };
+module.exports = { mongoConnect, mongoDisconnect};

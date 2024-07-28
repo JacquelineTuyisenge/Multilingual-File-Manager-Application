@@ -1,12 +1,15 @@
 const request = require('supertest');
 const apps = require('../testSetup.js');
 const File = require('../models/file.js');
-const { testMongoConnect, teatMongoDisconnect } = require('../mongo.js');
+const { mongoConnect, mongoDisconnect } = require('../mongo.js');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 describe('File Management API Tests', () => {
 
     beforeAll(async () => {
-        await testMongoConnect();
+        await mongoConnect();
     });
 
     afterEach(async () => {
@@ -14,7 +17,7 @@ describe('File Management API Tests', () => {
     });
 
     afterAll(async () => {
-        await teatMongoDisconnect();
+        await mongoDisconnect();
     });
 
     it('should delete a file', async () => {
